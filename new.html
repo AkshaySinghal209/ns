@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"> </script>
+
+  <link rel="stylesheet" href="signin.css" />
+  <link rel="stylesheet" href="style.css">
+  <title>LAB 10</title>
+  <script src="angular.min.js"></script>
+  <script src="roaster.js"></script>
+  
+</head>
+
+<body>
+  <br>
+  <label for="rowsToBeDisplayed">Display:</label>
+  <input type="number" step="1" min="0" max="10" ng-model="rowlimit" placeholder="Number">
+
+  <div class="dark" ng-controller="roaster_ctrl">
+
+    <h3><i class="fa fa-users"></i> Roaster List</h3>
+    <table class="styled-table">
+      <thead>
+
+        </tr>
+        <tr>
+          <th><input type="search" placeholder="Res Id" ng-model="search.flightNO" /></th>
+          <th><input type="search" placeholder="Date of incubation" ng-model="search.date" /></th>
+          <th><input type="search" placeholder="Source" ng-model="search.source" /></th>
+        
+          <th><input type="search" placeholder="Price" ng-model="search.fare" /></th>
+          <th><input type="search" placeholder="Avg delivery time" ng-model="search.noofseats" /></th>
+         
+        </tr>
+        <tr>
+          <th>Restaraunt ID</th>
+          <th>Date of incubation</th>
+          <th>Source</th>
+       
+          <th>Price</th>
+          <th>Avg Delivery Time</th>
+       
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="flight in r_list | filter:search |limitTo:rowlimit">
+          <td scope="row">{{flight.resId}}</td>
+          <td>{{flight.date | date}}</td>
+          <td>{{flight.source | uppercase }}</td>
+      
+          <td>{{flight.fare | currency}}</td>
+          <td>{{flight.deltime|unit}}</td>
+         
+        </tr>
+      </tbody>
+    </table>
+  </div>
